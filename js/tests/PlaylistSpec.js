@@ -16,6 +16,7 @@ define(['Playlist', 'Song'], function(Playlist, Song){
     spyOn(sessionStorage, 'clear').and.callFake(function () {
         store = {};
     });
+    sessionStorage.clear();
 
     // reset playlist
     playlist = new Playlist();
