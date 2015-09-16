@@ -2,6 +2,8 @@ define(['Playlist', 'Song'], function(Playlist, Song){
 
   var playlist;
   // Mocking sessionStorage
+  // NOTE: mocking sessionStorage won't work in firefox, see this issue
+  //    https://github.com/jasmine/jasmine/issues/299
   // beforeEach happens before each it() executes
   beforeEach(function () {
     var store = {};
