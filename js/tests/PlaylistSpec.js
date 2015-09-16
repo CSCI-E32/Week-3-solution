@@ -18,6 +18,7 @@ define(['Playlist', 'Song'], function(Playlist, Song){
     spyOn(sessionStorage, 'clear').and.callFake(function () {
         store = {};
     });
+    // just in case you're using firefox, this line will help mimic regular behavior
     sessionStorage.clear();
 
     // reset playlist
@@ -26,8 +27,14 @@ define(['Playlist', 'Song'], function(Playlist, Song){
   });
 
   describe('Playlist', function(){
-    it('should initialize to empty', function(){
+    it('should initialize to empty when the storage is empty', function(){
       expect(playlist.playlist.length).toBe(0);
+    });
+    it('should initialize to not empty when the storage is not empty', function(){
+      sessionStorage.setItem('playlist', JSON.stringify([new Song('something')]));
+      playlist = new Playlist();
+      expect(playlist.playlist.length).not.toBe(0);
+
     });
     describe('addSong', function(){
       it('should add a song to the playlist', function(){
